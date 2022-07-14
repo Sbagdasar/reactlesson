@@ -2,10 +2,15 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import rating from './assets/img/rating.svg'
 import cartWhite from './assets/img/cartWhite.svg'
+import {useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
+import arrow from './assets/img/arrowBack.svg'
+
 export const Product =()=>{
+    let { productId } = useParams();
     const [product, setProduct]= useState(null)
     useEffect(()=>{
-        let promise = axios.get('https://masterclass.kimitsu.it-incubator.ru/api/products/1')
+        let promise = axios.get(`https://masterclass.kimitsu.it-incubator.ru/api/products/${productId}`)
         promise.then((res)=>{
             const product = res.data
             setProduct(product)
@@ -17,8 +22,12 @@ export const Product =()=>{
                 product === null
                     ? <h2>Продукт еще грузится ...</h2>:
                 <div>
-                    <div>Заглушка. Понадобится чуть позже. Не удаляейте :)</div>
-
+                    <div className="arrowBack">
+                        <Link to={"/"}>
+                            <img src={arrow} alt="" />
+                            Back to Best Seller
+                        </Link>
+                    </div>
                     <div className="product">
                         <img src={product.image} alt="" />
                         <div className="info">

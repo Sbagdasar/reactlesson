@@ -14,7 +14,8 @@ function App() {
         <hr className="divider" />
         <Routes>
             <Route path="/" element={<BestSellers />} />
-            <Route path="product" element={<Product />} />
+            <Route path="product/:productId" element={<Product />} />
+            <Route path='*' element={<h1 className='errorPage'>404 page not found</h1>} />
         </Routes>
     </div>
   );

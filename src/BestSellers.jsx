@@ -16,8 +16,8 @@ export const BestSellers = () => {
         })
     },[])
 
-    const showProductHandler = ()=>{
-        navigate('product');
+    const showProductHandler = (id)=>{
+        navigate('product/' + id);
     }
 
     return (
@@ -31,7 +31,7 @@ export const BestSellers = () => {
                                 <img src={pr.image} alt="img" />
                                 <h4>{pr.title}</h4>
                                 <p className="price">${pr.price}</p>
-                                <button onClick={showProductHandler}>Show more</button>
+                                <button onClick={()=>showProductHandler(pr.id)}>Show more</button>
                             </div>
                         )
                     })
