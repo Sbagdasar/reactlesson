@@ -1,7 +1,11 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 
 export const BestSellers = () => {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([])
     useEffect(()=>{
         //server request
@@ -12,6 +16,9 @@ export const BestSellers = () => {
         })
     },[])
 
+    const showProductHandler = ()=>{
+        navigate('product');
+    }
 
     return (
         <div className='bestSeller'>
@@ -24,7 +31,7 @@ export const BestSellers = () => {
                                 <img src={pr.image} alt="img" />
                                 <h4>{pr.title}</h4>
                                 <p className="price">${pr.price}</p>
-                                <button>Show more</button>
+                                <button onClick={showProductHandler}>Show more</button>
                             </div>
                         )
                     })
